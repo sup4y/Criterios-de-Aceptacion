@@ -1,0 +1,105 @@
+### **Feature: US01 - Registro de nuevos usuarios**
+**Como usuario**
+**Quiero registrarme en la plataforma**
+**Para poder acceder a sus funcionalidades personalizadas**
+
+#### Scenario: E1: Registro exitoso de un nuevo usuario
+
+Given que estoy en la página de registro
+When ingreso un correo válido y una contraseña segura
+Then el sistema muestra el mensaje "Registro completado con éxito"
+
+**Examples: INPUT**
+
+| correo                                            | contraseña |
+| ------------------------------------------------- | ---------- |
+| [usuario@ejemplo.com](mailto:usuario@ejemplo.com) | P\@ssw0rd1 |
+
+**Examples: OUTPUT**
+\| mensaje                          |
+\| Registro completado con éxito   |
+
+---
+
+#### Scenario: E2: Registro con correo ya existente
+
+Given que existe un usuario registrado con el correo "[usuario@ejemplo.com](mailto:usuario@ejemplo.com)"
+When intento registrarme con el mismo correo
+Then el sistema muestra el error "El correo ya está en uso"
+
+**Examples: INPUT**
+
+| correo                                            |
+| ------------------------------------------------- |
+| [usuario@ejemplo.com](mailto:usuario@ejemplo.com) |
+
+**Examples: OUTPUT**
+\| mensaje                 |
+\| El correo ya está en uso |
+
+---
+
+### **Feature: US03 - Recuperación de contraseña**
+
+**Como usuario**
+**Quiero recuperar mi contraseña mediante correo electrónico**
+**Para poder acceder a mi cuenta en caso de olvido**
+
+#### Scenario: E1: Recuperar contraseña vía email
+
+Given que estoy en la página de login
+When hago clic en "¿Olvidaste tu contraseña?" e ingreso mi correo registrado
+Then recibo un email con instrucciones de restablecimiento
+
+**Examples: INPUT**
+
+| correo                                            |
+| ------------------------------------------------- |
+| [usuario@ejemplo.com](mailto:usuario@ejemplo.com) |
+
+**Examples: OUTPUT**
+\| mensaje                                  |
+\| Email con instrucciones enviado exitosamente |
+
+---
+
+### **Feature: US05 - Escaneo de documentos**
+
+**Como usuario**
+**Quiero escanear documentos con texto mediante la cámara**
+**Para poder reconocer y utilizar el contenido extraído**
+
+#### Scenario: E1: Escaneo de documento con texto claro
+
+Given que la aplicación tiene permiso de cámara
+When tomo una foto nítida de un documento con texto
+Then el texto aparece reconocido en pantalla
+
+**Examples: INPUT**
+
+| tipo de imagen            |
+| ------------------------- |
+| documento con texto claro |
+
+**Examples: OUTPUT**
+\| resultado                  |
+\| Texto reconocido exitosamente |
+
+---
+
+#### Scenario: E2: Escaneo sin detectar texto
+
+Given que la cámara está activa
+When tomo una foto de una superficie sin texto
+Then la aplicación muestra "No se detectó texto"
+
+**Examples: INPUT**
+
+| tipo de imagen       |
+| -------------------- |
+| superficie sin texto |
+
+**Examples: OUTPUT**
+\| mensaje                 |
+\| No se detectó texto     |
+
